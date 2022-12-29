@@ -1,0 +1,11 @@
+.gameBoardContainer {
+    width:50vw;
+    max-width: 800px;
+    height: 50vw;
+    margin: 1rem auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 0.5rem;
+    background-color:orange;
+}
