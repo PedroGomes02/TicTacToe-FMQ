@@ -8,16 +8,24 @@ const ControlBoard = (props: any) => {
         onClick={() => {
           props.setGameBoardState(Array(9).fill(null));
           props.setPlayerTurn(true);
+          props.setWinnerState(null);
+          props.setDrawState(false);
         }}
       >
         New Game
       </button>
-      <button onClick={() => {
+      <button
+        onClick={() => {
           props.setGameBoardState(Array(9).fill(null));
           props.setPlayerTurn(true);
           props.setPlayerIcon(null);
-          props.setScoreBoardState([0,0])
-        }}>Reset Game</button>
+          props.setScoreBoardState([0, 0]);
+          props.setWinnerState(null);
+          props.setDrawState(false);
+        }}
+      >
+        Reset Game
+      </button>
     </>
   );
 };

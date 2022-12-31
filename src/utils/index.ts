@@ -19,4 +19,20 @@ const checkWinner = (gameBoardState:string[]) =>{
     return null;
 }
 
-export{checkWinner}
+const createArrayOfEmptyIndexs = (array:any[]) => {
+
+    const arrayOfEmptyIndexs: number[] = [];
+    for (let i = 0; i < array.length; i++) {
+      if (!array[i]) {
+        arrayOfEmptyIndexs.push(i);
+      }
+    }
+    return arrayOfEmptyIndexs;
+}
+
+const checkDraw = (gameBoardState:string[])=>{
+
+if (createArrayOfEmptyIndexs(gameBoardState).length === 0) {return true}
+}
+
+export{checkWinner,createArrayOfEmptyIndexs, checkDraw}
