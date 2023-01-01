@@ -12,7 +12,7 @@ import {
   createArrayOfEmptyIndexs,
 } from "./utils";
 
-function App() {
+const App = () => {
   const [playerIcon, setPlayerIcon] = useState<null | string>(null);
   const [playerTurn, setPlayerTurn] = useState<boolean>(true);
   const [gameBoardState, setGameBoardState] = useState<string[]>(
@@ -21,18 +21,17 @@ function App() {
   const [winnerState, setWinnerState] = useState<null | undefined | string>(
     null
   );
-  const [tieState, setTieState] = useState<boolean>(false);
-  const [scoreBoardState, setScoreBoardState] = useState<number[]>([0, 0]);
   const [winningLineState, setWinningLineState] = useState<
     undefined | number[]
   >([]);
+  const [tieState, setTieState] = useState<boolean>(false);
+  const [scoreBoardState, setScoreBoardState] = useState<number[]>([0, 0]);
 
   useEffect(() => {
     if (!playerTurn && !winnerState && !tieState) {
       setTimeout(() => {
         const currentBoard = [...gameBoardState];
         const emptyCells = createArrayOfEmptyIndexs(currentBoard);
-
         currentBoard[
           emptyCells[Math.floor(Math.random() * emptyCells.length)]
         ] = playerIcon === "X" ? "O" : "X";
@@ -45,21 +44,21 @@ function App() {
           playerIcon,
           checkWinner,
           setWinnerState,
+          setWinningLineState,
           checkTie,
           setTieState,
           scoreBoardState,
-          setScoreBoardState,
-          setWinningLineState
+          setScoreBoardState
         );
       }, 1000);
     }
   }, [
-    gameBoardState,
     playerIcon,
     playerTurn,
-    scoreBoardState,
+    gameBoardState,
     tieState,
     winnerState,
+    scoreBoardState,
   ]);
 
   return (
@@ -72,13 +71,13 @@ function App() {
           <GameStatus
             playerIcon={playerIcon}
             playerTurn={playerTurn}
-            setGameBoardState={setGameBoardState}
             setPlayerTurn={setPlayerTurn}
+            setGameBoardState={setGameBoardState}
             winnerState={winnerState}
             setWinnerState={setWinnerState}
+            setWinningLineState={setWinningLineState}
             tieState={tieState}
             setTieState={setTieState}
-            setWinningLineState={setWinningLineState}
           />
           <GameBoard
             playerIcon={playerIcon}
@@ -86,33 +85,33 @@ function App() {
             setPlayerTurn={setPlayerTurn}
             gameBoardState={gameBoardState}
             setGameBoardState={setGameBoardState}
-            scoreBoardState={scoreBoardState}
-            setScoreBoardState={setScoreBoardState}
             winnerState={winnerState}
             setWinnerState={setWinnerState}
-            tieState={tieState}
-            setTieState={setTieState}
             winningLineState={winningLineState}
             setWinningLineState={setWinningLineState}
+            tieState={tieState}
+            setTieState={setTieState}
+            scoreBoardState={scoreBoardState}
+            setScoreBoardState={setScoreBoardState}
           />
           <ScoreBoard
-            scoreBoardState={scoreBoardState}
             playerIcon={playerIcon}
-            playerTurn={playerTurn}
-            setGameBoardState={setGameBoardState}
-            setPlayerTurn={setPlayerTurn}
             setPlayerIcon={setPlayerIcon}
+            playerTurn={playerTurn}
+            setPlayerTurn={setPlayerTurn}
             setScoreBoardState={setScoreBoardState}
             winnerState={winnerState}
             setWinnerState={setWinnerState}
+            setWinningLineState={setWinningLineState}
             tieState={tieState}
             setTieState={setTieState}
-            setWinningLineState={setWinningLineState}
+            scoreBoardState={scoreBoardState}
+            setGameBoardState={setGameBoardState}
           />
         </>
       )}
     </div>
   );
-}
+};
 
 export default App;

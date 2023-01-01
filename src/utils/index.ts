@@ -46,11 +46,11 @@ const checkIsLastTurn = (
   playerIcon: null|string,
   checkWinner: checkWinnerType,
   setWinner: Dispatch<SetStateAction<null | undefined | string>>,
+  setWinningLineState: Dispatch<SetStateAction<undefined|number[]>>,
   checkTie: checkTieType,
   setTie: Dispatch<SetStateAction<boolean>>,
   scoreBoard: number[],
   setScore: Dispatch<SetStateAction<number[]>>,
-  setWinningLineState: Dispatch<SetStateAction<undefined|number[]>>,
 ) => {
   if (checkWinner(currentBoard)) {
     setWinner((checkWinner(currentBoard))?.winnerSymbol);

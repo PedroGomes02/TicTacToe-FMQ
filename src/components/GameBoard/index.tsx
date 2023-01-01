@@ -1,22 +1,7 @@
 import CellBoard from "../CellBoard";
 import { checkIsLastTurn, checkTie, checkWinner } from "../../utils";
 import { gameBoardProps } from "../../types";
-import styled from "styled-components";
-
-const GameBoardContainer = styled.div`
-  width: 70%;
-  aspect-ratio: 1 / 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-
-  @media (max-height: 460px) {
-    
-    width: 30%;
-    align-self:center;
-  }
-`;
+import { GameBoardContainer } from "./styles";
 
 const GameBoard = (props: gameBoardProps) => {
   const handlerClick = (
@@ -28,7 +13,7 @@ const GameBoard = (props: gameBoardProps) => {
 
     if (
       !props.playerTurn ||
-      target.innerText ||
+      target.innerText||
       props.winnerState ||
       props.tieState
     ) {
@@ -45,11 +30,11 @@ const GameBoard = (props: gameBoardProps) => {
       props.playerIcon,
       checkWinner,
       props.setWinnerState,
+      props.setWinningLineState,
       checkTie,
       props.setTieState,
       props.scoreBoardState,
-      props.setScoreBoardState,
-      props.setWinningLineState
+      props.setScoreBoardState
     );
   };
 
@@ -58,10 +43,10 @@ const GameBoard = (props: gameBoardProps) => {
       {props.gameBoardState.map((element: null | string, index: number) => (
         <CellBoard
           key={index}
-          value={index}
           handlerClick={handlerClick}
-          cellStatus={element}
-          winnerCell={props.winningLineState?.includes(index)}
+          value={index}
+          cellSymbol={element}
+          isWinnerCell={props.winningLineState?.includes(index)}
         />
       ))}
     </GameBoardContainer>

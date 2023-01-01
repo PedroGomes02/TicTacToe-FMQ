@@ -1,12 +1,12 @@
 import { Dispatch, SetStateAction } from "react";
 
 interface cellBoardProps {
-  value: number | string;
   handlerClick: (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => void;
-  cellStatus: null | string;
-  winnerCell: undefined|boolean;
+  value: number | string;
+  cellSymbol: null | string;
+  isWinnerCell: undefined | boolean;
 }
 
 interface chooseIconProps {
@@ -25,8 +25,8 @@ interface gameBoardProps {
   setWinnerState: Dispatch<SetStateAction<null | undefined | string>>;
   tieState: boolean;
   setTieState: Dispatch<SetStateAction<boolean>>;
-  winningLineState: undefined|number[];
-  setWinningLineState: Dispatch<SetStateAction<undefined|number[]>>;
+  winningLineState: undefined | number[];
+  setWinningLineState: Dispatch<SetStateAction<undefined | number[]>>;
 }
 
 interface gameStatusProps {
@@ -38,7 +38,7 @@ interface gameStatusProps {
   setWinnerState: Dispatch<SetStateAction<null | undefined | string>>;
   tieState: boolean;
   setTieState: Dispatch<SetStateAction<boolean>>;
-  setWinningLineState: Dispatch<SetStateAction<undefined|number[]>>;
+  setWinningLineState: Dispatch<SetStateAction<undefined | number[]>>;
 }
 
 interface scoreBoardProps {
@@ -53,7 +53,7 @@ interface scoreBoardProps {
   setWinnerState: Dispatch<SetStateAction<null | undefined | string>>;
   tieState: boolean;
   setTieState: Dispatch<SetStateAction<boolean>>;
-  setWinningLineState: Dispatch<SetStateAction<undefined|number[]>>;
+  setWinningLineState: Dispatch<SetStateAction<undefined | number[]>>;
 }
 
 interface checkWinnerType {
