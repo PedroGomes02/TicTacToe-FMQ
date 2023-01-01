@@ -1,59 +1,70 @@
-import React, { Dispatch, SetStateAction } from "react";
-import "./styles.css";
 import CellBoard from "../CellBoard";
-import { checkDraw, checkWinner } from "../../utils";
+import { checkIsLastTurn, checkTie, checkWinner } from "../../utils";
+import { gameBoardProps } from "../../types";
+import styled from "styled-components";
 
-interface gameBoardProps {
-  playerIcon: "X" | "O";
-  gameBoardState: string[];
-  setGameBoardState: Dispatch<SetStateAction<string[]>>;
-  playerTurn: boolean;
-  setPlayerTurn: Dispatch<SetStateAction<boolean>>;
-  scoreBoardState: number[];
-  setScoreBoardState: Dispatch<SetStateAction<number[]>>;
-  winnerState: any;
-  setWinnerState: Dispatch<SetStateAction<any>>; ////// CORRIGIR
-  drawState: boolean;
-  setDrawState: Dispatch<SetStateAction<boolean>>;
-}
+const GameBoardContainer = styled.div`
+  width: 70%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+  @media (max-height: 460px) {
+    
+    width: 30%;
+    align-self:center;
+  }
+`;
 
 const GameBoard = (props: gameBoardProps) => {
   const handlerClick = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     event.preventDefault();
-    if (!props.playerTurn || props.winnerState || props.drawState) {
+    const target = event.target as HTMLElement;
+    const { value } = target as HTMLButtonElement;
+
+    if (
+      !props.playerTurn ||
+      target.innerText ||
+      props.winnerState ||
+      props.tieState
+    ) {
       return;
     }
-    const currentBoardState = [...props.gameBoardState];
-    
-    const {value} = event.target as HTMLButtonElement;
-    currentBoardState[Number(value)] = props.playerIcon;
-    props.setGameBoardState(currentBoardState);
+    const currentBoard = [...props.gameBoardState];
+    currentBoard[Number(value)] = props.playerIcon;
+
+    props.setGameBoardState(currentBoard);
     props.setPlayerTurn(false);
-    if (checkWinner(currentBoardState)) {
-      props.setWinnerState(checkWinner(currentBoardState));
-      const currentScoreBoard = [...props.scoreBoardState];
-      if (checkWinner(currentBoardState) === props.playerIcon) {
-        currentScoreBoard[0] += 1;
-      } else currentScoreBoard[1] += 1;
-      props.setScoreBoardState(currentScoreBoard);
-    } else if (checkDraw(currentBoardState)) {
-      props.setDrawState(true);
-    }
+
+    checkIsLastTurn(
+      currentBoard,
+      props.playerIcon,
+      checkWinner,
+      props.setWinnerState,
+      checkTie,
+      props.setTieState,
+      props.scoreBoardState,
+      props.setScoreBoardState,
+      props.setWinningLineState
+    );
   };
 
   return (
-    <div className="gameBoardContainer">
+    <GameBoardContainer>
       {props.gameBoardState.map((element: null | string, index: number) => (
         <CellBoard
           key={index}
           value={index}
           handlerClick={handlerClick}
           cellStatus={element}
+          winnerCell={props.winningLineState?.includes(index)}
         />
       ))}
-    </div>
+    </GameBoardContainer>
   );
 };
 

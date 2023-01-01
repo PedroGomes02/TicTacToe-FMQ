@@ -1,50 +1,66 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Header from "./components/Header";
 import ChooseIcon from "./components/ChooseIcon";
 import GameBoard from "./components/GameBoard";
-import ScoreBoard from "./components/ScoreBoard";
 import GameStatus from "./components/GameStatus";
-import ControlBoard from "./components/ControlBoard";
-import { checkDraw, checkWinner, createArrayOfEmptyIndexs } from "./utils";
+import ScoreBoard from "./components/ScoreBoard";
+import {
+  checkIsLastTurn,
+  checkTie,
+  checkWinner,
+  createArrayOfEmptyIndexs,
+} from "./utils";
 
 function App() {
-  const [playerIcon, setPlayerIcon] = useState<null | "X" | "O">(null);
+  const [playerIcon, setPlayerIcon] = useState<null | string>(null);
   const [playerTurn, setPlayerTurn] = useState<boolean>(true);
   const [gameBoardState, setGameBoardState] = useState<string[]>(
     Array(9).fill(null)
   );
+  const [winnerState, setWinnerState] = useState<null | undefined | string>(
+    null
+  );
+  const [tieState, setTieState] = useState<boolean>(false);
   const [scoreBoardState, setScoreBoardState] = useState<number[]>([0, 0]);
-  const [winnerState, setWinnerState] = useState<null | string>(null);
-  const [drawState, setDrawState] = useState<boolean>(false);
+  const [winningLineState, setWinningLineState] = useState<
+    undefined | number[]
+  >([]);
 
-  const cPUTurn = () => {
-    if (playerTurn || winnerState || drawState) {
-      return;
+  useEffect(() => {
+    if (!playerTurn && !winnerState && !tieState) {
+      setTimeout(() => {
+        const currentBoard = [...gameBoardState];
+        const emptyCells = createArrayOfEmptyIndexs(currentBoard);
+
+        currentBoard[
+          emptyCells[Math.floor(Math.random() * emptyCells.length)]
+        ] = playerIcon === "X" ? "O" : "X";
+
+        setGameBoardState(currentBoard);
+        setPlayerTurn(true);
+
+        checkIsLastTurn(
+          currentBoard,
+          playerIcon,
+          checkWinner,
+          setWinnerState,
+          checkTie,
+          setTieState,
+          scoreBoardState,
+          setScoreBoardState,
+          setWinningLineState
+        );
+      }, 1000);
     }
-    setTimeout(() => {
-      const currentBoardState = [...gameBoardState];
-      const emptyCells = createArrayOfEmptyIndexs(currentBoardState);
-      currentBoardState[
-        emptyCells[Math.floor(Math.random() * emptyCells.length)]
-      ] = playerIcon === "X" ? "O" : "X";
-      setGameBoardState(currentBoardState);
-      setPlayerTurn(true);
-      if (checkWinner(currentBoardState)) {
-        setWinnerState(checkWinner(currentBoardState));
-        const currentScoreBoard = [...scoreBoardState];
-        if (checkWinner(currentBoardState) === playerIcon) {
-          currentScoreBoard[0] += 1;
-        } else currentScoreBoard[1] += 1;
-        setScoreBoardState(currentScoreBoard);
-      } else if (checkDraw(currentBoardState)) {
-        setDrawState(true);
-      }
-    }, 1000);
-  };
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(cPUTurn, [playerTurn]);
+  }, [
+    gameBoardState,
+    playerIcon,
+    playerTurn,
+    scoreBoardState,
+    tieState,
+    winnerState,
+  ]);
 
   return (
     <div className="App">
@@ -53,6 +69,17 @@ function App() {
         <ChooseIcon setPlayerIcon={setPlayerIcon} />
       ) : (
         <>
+          <GameStatus
+            playerIcon={playerIcon}
+            playerTurn={playerTurn}
+            setGameBoardState={setGameBoardState}
+            setPlayerTurn={setPlayerTurn}
+            winnerState={winnerState}
+            setWinnerState={setWinnerState}
+            tieState={tieState}
+            setTieState={setTieState}
+            setWinningLineState={setWinningLineState}
+          />
           <GameBoard
             playerIcon={playerIcon}
             playerTurn={playerTurn}
@@ -63,21 +90,24 @@ function App() {
             setScoreBoardState={setScoreBoardState}
             winnerState={winnerState}
             setWinnerState={setWinnerState}
-            drawState={drawState}
-            setDrawState={setDrawState}
+            tieState={tieState}
+            setTieState={setTieState}
+            winningLineState={winningLineState}
+            setWinningLineState={setWinningLineState}
           />
-          <GameStatus playerIcon={playerIcon} playerTurn={playerTurn} />
           <ScoreBoard
             scoreBoardState={scoreBoardState}
             playerIcon={playerIcon}
-          />
-          <ControlBoard
+            playerTurn={playerTurn}
             setGameBoardState={setGameBoardState}
             setPlayerTurn={setPlayerTurn}
             setPlayerIcon={setPlayerIcon}
             setScoreBoardState={setScoreBoardState}
+            winnerState={winnerState}
             setWinnerState={setWinnerState}
-            setDrawState={setDrawState}
+            tieState={tieState}
+            setTieState={setTieState}
+            setWinningLineState={setWinningLineState}
           />
         </>
       )}

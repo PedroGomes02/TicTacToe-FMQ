@@ -1,3 +1,31 @@
 .App {
-  text-align: center;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #e8eef2;
+  border: 0.5rem solid #3d5467;
+}
+
+@media (min-width: 640px) {
+  .App {
+    width: 640px;
+    height: 100vh;
+    margin: 0 auto;
+  }
+}
+
+@media (max-height: 460px) {
+  .App {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-evenly;
+  }
 }
