@@ -5,29 +5,25 @@ const GameStatusContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 0.5rem;
+  padding: 0.5rem;
   color: #3d5467;
   font-size: 1rem;
   font-weight: bold;
   border: 0.25rem solid #3d5467;
 
-  @media (max-height: 460px) {
-    width: 20%;
+  @media (min-width: 769px) {
     flex-wrap: wrap;
     justify-content: center;
-    align-self: center;
     text-align: center;
+  }
+
+  @media (max-height: 480px) {
+    padding: 0.25rem;
   }
 `;
 
-const StyledP = styled.div`
-  display: block;
-  padding: 1rem;
-  width: 90%;
-`;
-
 const StyledButton = styled.button`
-  width: 50%;
+  width: 40%;
   font-size: 1rem;
   font-weight: bold;
   color: white;
@@ -47,9 +43,6 @@ const StyledButton = styled.button`
     transition: transform 0.1s ease;
   }
 
-  @media (max-height: 460px) {
-    width: auto;
-  }
 `;
 
-export { GameStatusContainer, StyledButton, StyledP };
+export { GameStatusContainer, StyledButton};

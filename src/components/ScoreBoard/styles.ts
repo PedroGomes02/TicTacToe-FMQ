@@ -9,17 +9,20 @@ const ScoreBoardContainer = styled.div`
   margin: 1rem;
   background-color: #23967f;
 
-  @media (max-height: 460px) {
-    width: 30%;
-    align-self: center;
+  @media (max-height: 480px) {
+    width: 90%;
+    justify-content: center;
+    text-align: center;
   }
 `;
 
 const ScoreBoardHeader = styled.h2`
   padding-top: 0.5rem;
-  margin-bottom: 0;
   color: #e8eef2;
   text-shadow: 0.1rem 0.1rem 0.1rem #3f3f3f80;
+  @media (max-height: 480px) {
+    padding-top: 0.25rem;
+  }
 `;
 
 const ScoresContainer = styled.div`
@@ -29,9 +32,11 @@ const ScoresContainer = styled.div`
   font-weight: bold;
   gap: 0.5rem;
   padding: 0.5rem;
-  margin-top: 0;
-  @media (max-height: 460px) {
+  @media (min-width: 769px) {
     flex-wrap: wrap;
+  }
+  @media (max-height: 480px) {
+    padding: 0.25rem;
   }
 `;
 
@@ -43,12 +48,15 @@ const StyledScoreContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem 0.5rem;
+  padding: 0.5rem;
   border: 0.25rem solid white;
   box-shadow: 0rem 0rem 0.5rem 0.1rem #3f3f3f80;
-
-  @media (max-height: 460px) {
-    width: 80%;
+  
+  @media (min-width: 769px) {
+    width: 90%;
+  }
+  @media (max-height: 480px) {
+    padding: 0.25rem;
   }
 
   .scoreNumber {
@@ -60,7 +68,7 @@ const StyledScoreContainer = styled.div`
 `;
 
 const StyledButton = styled.button`
-  width: 80%;
+  width: 90%;
   font-size: 1rem;
   border: 0.25rem solid #3d5467;
   margin-bottom: 0.5rem;
@@ -79,6 +87,9 @@ const StyledButton = styled.button`
   :active {
     transform: scale(0.95, 0.95);
     transition: transform 0.1s ease;
+  }
+  @media (max-height: 480px) {
+    padding: 0.25rem;
   }
 `;
 

@@ -1,5 +1,5 @@
 import { gameStatusProps } from "../../types";
-import { GameStatusContainer, StyledButton, StyledP } from "./styles";
+import { GameStatusContainer, StyledButton } from "./styles";
 
 const GameStatus = (props: gameStatusProps) => {
   let statusMessage = "";
@@ -19,7 +19,7 @@ const GameStatus = (props: gameStatusProps) => {
 
   return (
     <GameStatusContainer>
-      <StyledP>{statusMessage}</StyledP>
+      <p>{statusMessage}</p>
       <StyledButton
         onClick={() => {
           if (props.playerTurn || props.winnerState || props.tieState) {
