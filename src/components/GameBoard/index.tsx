@@ -4,6 +4,7 @@ import { gameBoardProps } from "../../types";
 import { GameBoardContainer } from "./styles";
 
 const GameBoard = (props: gameBoardProps) => {
+  
   const handlerClick = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
