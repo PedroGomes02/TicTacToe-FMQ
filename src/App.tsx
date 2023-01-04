@@ -5,13 +5,13 @@ import ChooseIcon from "./components/ChooseIcon";
 import GameBoard from "./components/GameBoard";
 import GameStatus from "./components/GameStatus";
 import ScoreBoard from "./components/ScoreBoard";
+import { GameContainer, GameControlsContainer } from "./styles";
 import {
   checkIsLastTurn,
   checkTie,
   checkWinner,
   createArrayOfEmptyIndexs,
 } from "./utils";
-import styled from "styled-components";
 
 const App = () => {
   const [playerIcon, setPlayerIcon] = useState<null | string>(null);
@@ -62,36 +62,7 @@ const App = () => {
     scoreBoardState,
   ]);
 
-  const GameContainer = styled.div`
-    width: 100%;
-    height: 90%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-
-    @media (max-height: 480px), (min-width: 769px) {
-      flex-direction: row;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-  `;
-
-  const GameControlsContainer = styled.div`
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    padding: 1rem;
-    @media (min-width: 769px) {
-      width: 40%;
-      height:80%;
-    }
-    @media (max-height: 480px) {
-      width: 50%;
-    }
-  `;
+  
 
   return (
     <div className="App">

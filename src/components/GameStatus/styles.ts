@@ -5,31 +5,32 @@ const GameStatusContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem;
+  padding: 0.4rem;
   color: #3d5467;
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: bold;
-  border: 0.25rem solid #3d5467;
+  border: 0.2rem solid #3d5467;
+  border-radius: 10px;
 
   @media (min-width: 769px) {
     flex-wrap: wrap;
-    justify-content: center;
-    text-align: center;
   }
 
   @media (max-height: 480px) {
-    padding: 0.25rem;
+    padding: 0.2rem;
   }
 `;
 
 const StyledButton = styled.button`
   width: 40%;
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: bold;
   color: white;
-  border: 0.25rem solid #3d5467;
-  margin: 0.5rem 1rem;
-  padding: 0.25rem;
+  border: 0.2rem solid #3d5467;
+  margin: 0.2rem 0.4rem;
+  padding: 0.2rem;
+  border-radius: 10px;
+  
   background-color: #ce7b91;
   box-shadow: 0rem 0rem 0.5rem 0.1rem #3f3f3f80;
 
@@ -42,7 +43,6 @@ const StyledButton = styled.button`
     transform: scale(0.95, 0.95);
     transition: transform 0.1s ease;
   }
-
 `;
 
 export { GameStatusContainer, StyledButton};

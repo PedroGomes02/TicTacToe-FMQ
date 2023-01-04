@@ -2,10 +2,11 @@ import styled from "styled-components";
 
 const StyledCellBoard = styled.button`
   width: calc(100% / 3);
-  aspect-ratio: 1 / 1;
+  height:calc(100% / 3);
   background-color: #e8eef2;
   border: none;
   font-size: 2rem;
+  font-weight: bold;
 
   :hover {
     background: radial-gradient(circle, white 0%, #e8eef2 66%);

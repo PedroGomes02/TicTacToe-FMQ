@@ -4,10 +4,10 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   background-color: #e8eef2;
-  border: 0.5rem solid #3d5467;
+  border: 0.4rem solid #3d5467;
 }
 
 @media (min-width: 1025px) {
