@@ -4,7 +4,6 @@ import { gameBoardProps } from "../../types";
 import { GameBoardContainer } from "./styles";
 
 const GameBoard = (props: gameBoardProps) => {
-  
   const handlerClick = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
@@ -14,7 +13,7 @@ const GameBoard = (props: gameBoardProps) => {
 
     if (
       !props.playerTurn ||
-      target.innerText||
+      target.innerText ||
       props.winnerState ||
       props.tieState
     ) {

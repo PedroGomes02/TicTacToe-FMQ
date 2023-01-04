@@ -14,6 +14,8 @@ const ScoreBoardContainer = styled.div`
 const ScoreBoardHeader = styled.h2`
   padding-top: 0.2rem;
   color: #e8eef2;
+  font-size: 1.6rem;
+    font-weight: bold;
   text-shadow: 0.1rem 0.1rem 0.1rem #3f3f3f80;
 `;
 
@@ -24,8 +26,10 @@ const ScoresContainer = styled.div`
   gap: 0.4rem;
   padding: 0.4rem;
   font-weight: bold;
-  @media (min-width: 769px) {
-    flex-wrap: wrap;
+  align-items: center;
+  
+  @media (orientation: landscape) {
+    flex-direction: column;
   }
 `;
 
@@ -42,17 +46,18 @@ const StyledScoreContainer = styled.div`
   box-shadow: 0rem 0rem 0.5rem 0.1rem #3f3f3f80;
   border-radius: 10px;
 
-  @media (min-width: 769px) {
-    width: 90%;
+  @media (orientation: landscape) {
+    width: 95%;
   }
 
   .scoreNumber {
     width: 40%;
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: bold;
     border: 2.5px solid #e8eef2;
     text-align: center;
     background-color: black;
+    border-radius: 5px;
   }
 `;
 
@@ -70,7 +75,7 @@ const StyledButton = styled.button`
   box-shadow: 0rem 0rem 0.5rem 0.1rem #3f3f3f80;
 
   :hover {
-    opacity: 0.95;
+    background-color: #ce6c86;
     box-shadow: 0rem 0rem 0.5rem 0.25rem white;
   }
 

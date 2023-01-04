@@ -7,11 +7,14 @@ const GameContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-
-  @media (max-height: 480px), (min-width: 769px) {
+  
+  @media (orientation: landscape) {
     flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
+  }
+
+  @media (min-width: 1201px) {
+      width: 1201px;
+    margin: 0 auto;
   }
 `;
 
@@ -23,7 +26,7 @@ const GameControlsContainer = styled.div`
   justify-content: space-evenly;
   align-items: center;
 
-  @media (max-height: 480px), (min-width: 769px) {
+  @media (orientation: landscape) {
     width: 40%;
     height: 100%;
   }

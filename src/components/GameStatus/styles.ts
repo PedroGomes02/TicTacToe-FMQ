@@ -11,14 +11,6 @@ const GameStatusContainer = styled.div`
   font-weight: bold;
   border: 0.2rem solid #3d5467;
   border-radius: 10px;
-
-  @media (min-width: 769px) {
-    flex-wrap: wrap;
-  }
-
-  @media (max-height: 480px) {
-    padding: 0.2rem;
-  }
 `;
 
 const StyledButton = styled.button`
@@ -30,12 +22,12 @@ const StyledButton = styled.button`
   margin: 0.2rem 0.4rem;
   padding: 0.2rem;
   border-radius: 10px;
-  
+
   background-color: #ce7b91;
   box-shadow: 0rem 0rem 0.5rem 0.1rem #3f3f3f80;
 
   :hover {
-    opacity: 0.95;
+    background-color: #ce6c86;
     box-shadow: 0rem 0rem 0.5rem 0.25rem #3f3f3f80;
   }
 
@@ -45,4 +37,4 @@ const StyledButton = styled.button`
   }
 `;
 
-export { GameStatusContainer, StyledButton};
+export { GameStatusContainer, StyledButton };
