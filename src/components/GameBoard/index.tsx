@@ -1,52 +1,30 @@
 import CellBoard from "../CellBoard";
-import { checkIsLastTurn, checkTie, checkWinner } from "../../utils";
 import { gameBoardProps } from "../../types";
 import { GameBoardContainer } from "./styles";
 
 const GameBoard = (props: gameBoardProps) => {
-  const handlerClick = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
-    event.preventDefault();
-    const target = event.target as HTMLElement;
-    const { value } = target as HTMLButtonElement;
-
-    if (
-      !props.playerTurn ||
-      target.innerText ||
-      props.winnerState ||
-      props.tieState
-    ) {
-      return;
-    }
-    const currentBoard = [...props.gameBoardState];
-    currentBoard[Number(value)] = props.playerIcon;
-
-    props.setGameBoardState(currentBoard);
-    props.setPlayerTurn(false);
-
-    checkIsLastTurn(
-      currentBoard,
-      props.playerIcon,
-      checkWinner,
-      props.setWinnerState,
-      props.setWinningLineState,
-      checkTie,
-      props.setTieState,
-      props.scoreBoardState,
-      props.setScoreBoardState
-    );
-  };
 
   return (
     <GameBoardContainer>
       {props.gameBoardState.map((element: null | string, index: number) => (
         <CellBoard
           key={index}
-          handlerClick={handlerClick}
           value={index}
           cellSymbol={element}
           isWinnerCell={props.winningLineState?.includes(index)}
+          playerIcon={props.playerIcon}
+          playerTurn={props.playerTurn}
+          setPlayerTurn={props.setPlayerTurn}
+          gameBoardState={props.gameBoardState}
+          setGameBoardState={props.setGameBoardState}
+          winnerState={props.winnerState}
+          setWinnerState={props.setWinnerState}
+          winningLineState={props.winningLineState}
+          setWinningLineState={props.setWinningLineState}
+          tieState={props.tieState}
+          setTieState={props.setTieState}
+          scoreBoardState={props.scoreBoardState}
+          setScoreBoardState={props.setScoreBoardState}
         />
       ))}
     </GameBoardContainer>

@@ -1,12 +1,22 @@
 import { Dispatch, SetStateAction } from "react";
 
 interface cellBoardProps {
-  handlerClick: (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => void;
-  value: number | string;
+  value: number;
   cellSymbol: null | string;
   isWinnerCell: undefined | boolean;
+  playerIcon: string;
+  gameBoardState: string[];
+  setGameBoardState: Dispatch<SetStateAction<string[]>>;
+  playerTurn: boolean;
+  setPlayerTurn: Dispatch<SetStateAction<boolean>>;
+  scoreBoardState: number[];
+  setScoreBoardState: Dispatch<SetStateAction<number[]>>;
+  winnerState: null | undefined | string;
+  setWinnerState: Dispatch<SetStateAction<null | undefined | string>>;
+  tieState: boolean;
+  setTieState: Dispatch<SetStateAction<boolean>>;
+  winningLineState: undefined | number[];
+  setWinningLineState: Dispatch<SetStateAction<undefined | number[]>>;
 }
 
 interface chooseIconProps {
