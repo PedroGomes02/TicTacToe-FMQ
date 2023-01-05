@@ -6,10 +6,21 @@ const StyledHeader = styled.h1`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #23967f;
-  color: #e8eef2;
-  text-shadow: 0.1rem 0.1rem 0.1rem #3f3f3f80;
+  background-color: ${(props) => props.theme.primaryColor};
   font-size: 3.5vmax;
+  color: ${(props) => props.theme.secondaryTextColor};
+  text-shadow: 0.1rem 0.1rem 0.25rem ${(props) => props.theme.primaryTextColor};
 `;
 
-export { StyledHeader };
+const ThemeButton = styled.button`
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  background-color: transparent;
+  border: none;
+  font-size: 1.5rem;
+
+  cursor: pointer;
+`;
+
+export { StyledHeader, ThemeButton };

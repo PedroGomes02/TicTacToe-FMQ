@@ -3,7 +3,6 @@ import { checkIsLastTurn, checkTie, checkWinner } from "../../utils";
 import { StyledCellBoard } from "./styles";
 
 const CellBoard = (props: cellBoardProps) => {
-  
   const handlerClick = () => {
     if (
       !props.playerTurn ||
@@ -28,24 +27,15 @@ const CellBoard = (props: cellBoardProps) => {
       checkTie,
       props.setTieState,
       props.scoreBoardState,
-      props.setScoreBoardState,
+      props.setScoreBoardState
     );
   };
-    
+
   return (
     <StyledCellBoard
       onClick={handlerClick}
       value={props.value}
-      style={
-        props.isWinnerCell
-          ? {
-              background:
-                "radial-gradient(circle, rgba(206,123,145,1) 0%, rgba(232,238,242,1) 66%)",
-              color: "white",
-              fontWeight: "bold",
-            }
-          : {}
-      }
+      isWinnerCell={props.isWinnerCell}
     >
       {props.cellSymbol}
     </StyledCellBoard>

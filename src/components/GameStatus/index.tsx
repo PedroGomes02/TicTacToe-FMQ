@@ -17,22 +17,20 @@ const GameStatus = (props: gameStatusProps) => {
     statusMessage = `CPU Turn (${props.playerIcon === "X" ? "O" : "X"})`;
   }
 
+  const handlerClick = () => {
+    if (props.playerTurn || props.winnerState || props.tieState) {
+      props.setPlayerTurn(true);
+      props.setGameBoardState(Array(9).fill(null));
+      props.setWinnerState(null);
+      props.setWinningLineState([]);
+      props.setTieState(false);
+    }
+  };
+
   return (
     <GameStatusContainer>
       <p>{statusMessage}</p>
-      <StyledButton
-        onClick={() => {
-          if (props.playerTurn || props.winnerState || props.tieState) {
-            props.setPlayerTurn(true);
-            props.setGameBoardState(Array(9).fill(null));
-            props.setWinnerState(null);
-            props.setWinningLineState([]);
-            props.setTieState(false);
-          }
-        }}
-      >
-        New Game
-      </StyledButton>
+      <StyledButton onClick={handlerClick}>New Game</StyledButton>
     </GameStatusContainer>
   );
 };

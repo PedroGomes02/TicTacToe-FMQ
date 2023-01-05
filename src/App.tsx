@@ -1,19 +1,24 @@
 import { useEffect, useState } from "react";
-import "./App.css";
 import Header from "./components/Header";
 import ChooseIcon from "./components/ChooseIcon";
 import GameBoard from "./components/GameBoard";
 import GameStatus from "./components/GameStatus";
 import ScoreBoard from "./components/ScoreBoard";
-import { GameContainer, GameControlsContainer } from "./styles";
+import { AppContainer, GameContainer, GameControlsContainer } from "./styles";
 import {
   checkIsLastTurn,
   checkTie,
   checkWinner,
   createArrayOfEmptyIndexs,
 } from "./utils";
+import { ThemeProvider } from "styled-components";
+import { theme } from "./themes";
+import Footer from "./components/Footer";
 
 const App = () => {
+  const [isDarkTheme, setIsDarkTheme] = useState<boolean>(
+    localStorage.getItem("isDarkTheme") === "true" ? true : false
+  );
   const [playerIcon, setPlayerIcon] = useState<null | string>(null);
   const [playerTurn, setPlayerTurn] = useState<boolean>(true);
   const [gameBoardState, setGameBoardState] = useState<string[]>(
@@ -62,62 +67,63 @@ const App = () => {
     scoreBoardState,
   ]);
 
-  
-
   return (
-    <div className="App">
-      <Header />
-      {!playerIcon ? (
-        <ChooseIcon setPlayerIcon={setPlayerIcon} />
-      ) : (
-        <>
-          <GameContainer>
-            <GameBoard
-              playerIcon={playerIcon}
-              playerTurn={playerTurn}
-              setPlayerTurn={setPlayerTurn}
-              gameBoardState={gameBoardState}
-              setGameBoardState={setGameBoardState}
-              winnerState={winnerState}
-              setWinnerState={setWinnerState}
-              winningLineState={winningLineState}
-              setWinningLineState={setWinningLineState}
-              tieState={tieState}
-              setTieState={setTieState}
-              scoreBoardState={scoreBoardState}
-              setScoreBoardState={setScoreBoardState}
-            />
-            <GameControlsContainer>
-              <GameStatus
+    <ThemeProvider theme={isDarkTheme ? theme.darkTheme : theme.lightTheme}>
+      <AppContainer>
+        <Header isDarkTheme={isDarkTheme} setIsDarkTheme={setIsDarkTheme} />
+        {!playerIcon ? (
+          <ChooseIcon setPlayerIcon={setPlayerIcon} />
+        ) : (
+          <>
+            <GameContainer>
+              <GameBoard
                 playerIcon={playerIcon}
                 playerTurn={playerTurn}
                 setPlayerTurn={setPlayerTurn}
+                gameBoardState={gameBoardState}
                 setGameBoardState={setGameBoardState}
                 winnerState={winnerState}
                 setWinnerState={setWinnerState}
-                setWinningLineState={setWinningLineState}
-                tieState={tieState}
-                setTieState={setTieState}
-              />
-              <ScoreBoard
-                playerIcon={playerIcon}
-                setPlayerIcon={setPlayerIcon}
-                playerTurn={playerTurn}
-                setPlayerTurn={setPlayerTurn}
-                setScoreBoardState={setScoreBoardState}
-                winnerState={winnerState}
-                setWinnerState={setWinnerState}
+                winningLineState={winningLineState}
                 setWinningLineState={setWinningLineState}
                 tieState={tieState}
                 setTieState={setTieState}
                 scoreBoardState={scoreBoardState}
-                setGameBoardState={setGameBoardState}
+                setScoreBoardState={setScoreBoardState}
               />
-            </GameControlsContainer>
-          </GameContainer>
-        </>
-      )}
-    </div>
+              <GameControlsContainer>
+                <GameStatus
+                  playerIcon={playerIcon}
+                  playerTurn={playerTurn}
+                  setPlayerTurn={setPlayerTurn}
+                  setGameBoardState={setGameBoardState}
+                  winnerState={winnerState}
+                  setWinnerState={setWinnerState}
+                  setWinningLineState={setWinningLineState}
+                  tieState={tieState}
+                  setTieState={setTieState}
+                />
+                <ScoreBoard
+                  playerIcon={playerIcon}
+                  setPlayerIcon={setPlayerIcon}
+                  playerTurn={playerTurn}
+                  setPlayerTurn={setPlayerTurn}
+                  setScoreBoardState={setScoreBoardState}
+                  winnerState={winnerState}
+                  setWinnerState={setWinnerState}
+                  setWinningLineState={setWinningLineState}
+                  tieState={tieState}
+                  setTieState={setTieState}
+                  scoreBoardState={scoreBoardState}
+                  setGameBoardState={setGameBoardState}
+                />
+              </GameControlsContainer>
+            </GameContainer>
+          </>
+        )}
+        <Footer />
+      </AppContainer>
+    </ThemeProvider>
   );
 };
 

@@ -1,10 +1,10 @@
 import { chooseIconProps } from "../../types";
-import { ChooseIconContainer, StyledButton, StyledH2 } from "./styles";
+import { ChooseIconContainer, StyledHeading, StyledButton } from "./styles";
 
 const ChooseIcon = (props: chooseIconProps) => {
   return (
     <ChooseIconContainer>
-      <StyledH2>Please Choose your Icon</StyledH2>
+      <StyledHeading>Please Choose your Icon</StyledHeading>
       <StyledButton onClick={() => props.setPlayerIcon("X")}>X</StyledButton>
       <StyledButton onClick={() => props.setPlayerIcon("O")}>O</StyledButton>
     </ChooseIconContainer>
