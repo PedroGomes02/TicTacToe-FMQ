@@ -13,7 +13,7 @@ const ChooseIconContainer = styled.div`
   border-radius: 10px;
 
   @media (min-width: 1201px) {
-    width: 1201px;
+    width: 960px;
   }
 `;
 
